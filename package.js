@@ -1,6 +1,6 @@
 Package.describe({
-  name: 'dispatch:short-url',
-  version: '1.1.0',
+  name: 'astrocoders:short-url',
+  version: '1.1.1',
   summary: 'Handle short urls, android and ios support'
 });
 
