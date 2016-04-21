@@ -4,29 +4,28 @@
   <title>Open app</title>
 
   <script type="text/javascript">
-    // tries to execute the uri:scheme
-    var start, end, elapsed;
 
-    // start a timer
-    start = new Date().getTime();
+    var intent = '<INTENT>';
+    var timeout = setTimeout(function() {
+      window.document.location = '<FALLBACK>';
+    }, 1000);
 
-    // attempt to redirect to the uri:scheme
-    // the lovely thing about javascript is that it's single threadded.
-    // if this WORKS, it'll stutter for a split second, causing the timer to be off
-    document.location = '<INTENT>';
+    // create iframe and its onload hook
+    var iframe = document.createElement("iframe");
+    iframe.onload = function() {
+      clearTimeout(timeout);
+      // tries to execute the uri:scheme
+      iframe.parentNode.removeChild(iframe);
+      window.location.href = intent;
+    };
 
-    setTimeout(function() {
-      // end timer
-      end = new Date().getTime();
+    // set iframe configs
+    iframe.src = intent;
+    iframe.setAttribute("style", "display:none;");
 
-      elapsed = (end - start);
+    // append iframe on body
+    document.body.appendChild(iframe);
 
-      // if there's no elapsed time, then the scheme didn't fire, and we head to the url.
-      if (elapsed < 1) {
-        document.location = '<FALLBACK>';
-      }
-      // Else we could show a success page?
-    }, 0);
   </script>
 </head>
 <body>
