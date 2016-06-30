@@ -16,7 +16,7 @@ ddp-server@1.2.2
 deps@1.0.9
 diff-sequence@1.0.1
 dispatch:short-url@1.1.0
-ecmascript@0.1.6
+ecmascript@0.1.5
 ecmascript-runtime@0.2.6
 ejson@1.0.7
 geojson-utils@1.0.4
